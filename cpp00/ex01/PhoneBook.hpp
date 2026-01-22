@@ -6,18 +6,14 @@
 class PhoneBook
 {
 private:
-	Contact	_contact;
-	int		_last_index;
-	int		_total;
+	Contact	_contact[8];
+	int		_index;
 public:
-	PhoneBook(Contact _contact, int _last_index, int _total);
+	PhoneBook();
 	~PhoneBook();
+	int	get_index();
+	void  add_contact();
+	void  search_contact();
 };
 
-PhoneBook::PhoneBook(Contact _contact, int _last_index, int _total)
-{
-}
 
-PhoneBook::~PhoneBook()
-{
-}

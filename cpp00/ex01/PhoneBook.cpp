@@ -1,41 +1,50 @@
 #include "PhoneBook.hpp"
-/*
 
-• PhoneBook
-◦ It has an array of contacts.
-◦ It can store a maximum of 8 contacts. If the user tries to add a 9th contact,
-replace the oldest one by the new one.
-◦ Please note that dynamic allocation is forbidden.
-• Contact
-◦ Stands for a phonebook contact.
-In your code, the phonebook must be instantiated as an instance of the PhoneBook
-class. Same thing for the contacts. Each one of them must be instantiated as an instance
-of the Contact class. You’re free to design the classes as you like but keep in mind that
-anything that will always be used inside a class is private, and that anything that can be
-used outside a class is public.
+PhoneBook::PhoneBook(){
+    _index = -1;
+}
+PhoneBook::~PhoneBook(){
 
-• Any other input is ignored than:
-• ADD: save a new contact
-◦ If the user enters this command, they are prompted to input the information
-of the new contact one field at a time. Once all the fields have been completed,
-add the contact to the phonebook.
-◦ The contact fields are: first name, last name, nickname, phone number, and
-darkest secret. A saved contact can’t have empty fields.
-• SEARCH: display a specific contact
-◦ Display the saved contacts as a list of 4 columns: index, first name, last
-name and nickname.
-◦ Each column must be 10 characters wide. A pipe character (’|’) separates
-them. The text must be right-aligned. If the text is longer than the column,
-it must be truncated and the last displayable character must be replaced by a
-dot (’.’).
-◦ Then, prompt the user again for the index of the entry to display. If the index
-is out of range or wrong, define a relevant behavior. Otherwise, display the
-contact information, one field per line.
-• EXIT
-◦ The program quits and the contacts are lost forever!*/
+}
 
-int	main(int argc, char **argv){
+int PhoneBook::get_index(){
+    if (_index > 7)
+        _index = 0;
+    else
+        _index++;
+    return _index;
+}
+
+void   PhoneBook::add_contact(){
+    std::string input;
+
+    std::cout << "first Name: ";
+    std::cin >> input;
+    _contact[_index].Contact::set_firstname(input);
 
 
-    
+    std::cout << "last name: ";
+    std::cin >> input;
+    _contact[_index].Contact::set_lastname(input); 
+
+
+    std::cout << "nickname: ";
+    std::cin >> input;
+    _contact[_index].Contact::set_nickname(input); 
+
+
+    std::cout << "phone number: ";
+    std::cin >> input;
+    _contact[_index].Contact::set_phone(input); 
+
+    std::cout << "Darkest secret: ";
+    std::getline(std::cin, input);
+    _contact[_index].Contact::set_secret(input);
+}
+
+void   PhoneBook::search_contact(){
+
+    int pos = 0; // std::cin
+    std::cout << pos << "|";
+    std::cout << _contact[pos].Contact::get_firstname() << "|" << std::endl;
 }
