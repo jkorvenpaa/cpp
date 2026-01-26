@@ -5,13 +5,13 @@ int	main(){
     std::string input;
     PhoneBook book;
 
-    std::cout << "PhoneBook opened: type ADD, SEARCH or EXIT" << std::endl; 
     while (1){
-        
+        std::cout << GOLD << "PhoneBook: type ADD, SEARCH or EXIT"
+            << RESET << std::endl; 
         if (!std::getline(std::cin , input))
             break; 
         if (input == "EXIT"){
-            std::cout << "Closing PhoneBook" << std::endl; 
+            std::cout << GOLD << "Closing PhoneBook" << std::endl; 
             break;
         }
         else if (input == "ADD"){
