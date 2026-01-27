@@ -99,11 +99,12 @@ void   PhoneBook::search_contact(){
 		if (i >= 0)
 			break;
 	}
-	std::cout << PINK << std::setw(10) << i << "|"
-		<< std::setw(10) << _contact[i].get_firstname() << "|"
-		<< std::setw(10) << _contact[i].get_lastname() << "|"
-		<< std::setw(10) << _contact[i].get_nickname() << "|"
-		<< std::setw(10) << _contact[i].get_phone() << "|"
-		<< std::setw(10) << _contact[i].get_secret() << "|" << RESET << std::endl;
+	
+	std::cout << PINK << "CONTACT " << i << std::endl
+		<< "first name: " <<_contact[i].get_firstname() << std::endl
+		<< "last name: " <<_contact[i].get_lastname() << std::endl
+		<< "nickname: " << _contact[i].get_nickname() << std::endl
+		<< "phone number: " << _contact[i].get_phone() << std::endl
+		<< "darkest secret: " << _contact[i].get_secret() << std::endl << RESET;
 
 }

@@ -18,9 +18,9 @@ private:
 public:
 	PhoneBook();
 	~PhoneBook();
-	int	get_index();
-	void  add_contact();
-	void  search_contact();
+	int		get_index();
+	void  	add_contact();
+	void  	search_contact();
 };
 
 
