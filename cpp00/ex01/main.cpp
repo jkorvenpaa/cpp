@@ -18,10 +18,8 @@ int	main(){
             book.get_index();
             book.add_contact();
         }
-        else if (input == "SEARCH"){
-            book.get_index();
-            book.search_contact();
-        }  
+        else if (input == "SEARCH")
+            book.search_contact(); 
     }
     return 0; 
 }

@@ -99,7 +99,10 @@ void   PhoneBook::search_contact(){
 		if (i >= 0)
 			break;
 	}
-	
+	if (_contact[i].get_firstname().empty()){
+		std::cout << PINK << "No saved contact on index " << i << std::endl;
+		return ;
+	}
 	std::cout << PINK << "CONTACT " << i << std::endl
 		<< "first name: " <<_contact[i].get_firstname() << std::endl
 		<< "last name: " <<_contact[i].get_lastname() << std::endl
