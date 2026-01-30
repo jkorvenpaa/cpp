@@ -22,7 +22,7 @@ std::string	display_field(std::string field){
 		std::cout << BLUE << field << RESET;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
-			return ("");
+			exit (0);
 		if (!input.empty())
 			break;
 	}
@@ -33,25 +33,15 @@ void   PhoneBook::add_contact(){
 	std::string input;
 
 	input = display_field("first name: ");
-	if (input.empty())
-		return ;
-	_contact[_index].Contact::set_firstname(input);
+	_contact[_index].set_firstname(input);
 	input = display_field("last name: ");
-	if (input.empty())
-		return ;
-	_contact[_index].Contact::set_lastname(input); 
+	_contact[_index].set_lastname(input); 
 	input = display_field("nick name: ");
-	if (input.empty())
-		return ;
-	_contact[_index].Contact::set_nickname(input);
+	_contact[_index].set_nickname(input);
 	input = display_field("phone number: ");
-	if (input.empty())
-		return ;
-	_contact[_index].Contact::set_phone(input); 
+	_contact[_index].set_phone(input); 
 	input = display_field("darkest secret: ");
-	if (input.empty())
-		return ;
-	_contact[_index].Contact::set_secret(input);
+	_contact[_index].set_secret(input);
 	std::cout << PINK << "Added contact " << _index << " to PhoneBook"
 		<< RESET << std::endl;  
 }
@@ -94,10 +84,10 @@ void   PhoneBook::search_contact(){
 		std::cout << BLUE << "Index to display (number between 0 and 7): " << RESET;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
-			return;
+			exit (0);
 		i = valid_index(input);
 		if (i >= 0)
-			break;
+			break ;
 	}
 	if (_contact[i].get_firstname().empty()){
 		std::cout << PINK << "No saved contact on index " << i << std::endl;
@@ -109,5 +99,4 @@ void   PhoneBook::search_contact(){
 		<< "nickname: " << _contact[i].get_nickname() << std::endl
 		<< "phone number: " << _contact[i].get_phone() << std::endl
 		<< "darkest secret: " << _contact[i].get_secret() << std::endl << RESET;
-
 }

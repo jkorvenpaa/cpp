@@ -41,5 +41,4 @@ void	Contact::set_phone(std::string phone){
 }
 void    Contact::set_secret(std::string secret){
     _secret = secret;
-
 }
