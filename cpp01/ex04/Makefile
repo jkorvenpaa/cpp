@@ -1,7 +1,7 @@
-NAME = Humans
+NAME = replace
 CXX = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++20
-SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 .SECONDARY:$(OBJS)
