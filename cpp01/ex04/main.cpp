@@ -11,9 +11,12 @@ int	main(int argc, char **argv){
 	std::string filename = argv[1];
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
+	if (s1.empty() || s2.empty()){
+		std::cerr << "empty string as an argument\n";
+		return 1;
+	}
 	std::string replace = filename + ".replace";
 	std::ifstream infile(filename);
-
 	if (!infile){
 		std::cerr << "Opening file failed\n";
 		return 1;
