@@ -23,6 +23,7 @@ int	main(int argc, char **argv){
 	}
 	std::ofstream outfile(replace);
 	if (!outfile){
+		infile.close();
 		std::cerr << "Creating file failed\n";
 		return 1;
 	}
@@ -35,5 +36,7 @@ int	main(int argc, char **argv){
 			line = line.substr(0, pos) + s2 + line.substr(pos + s1.length(), line.length());
 		outfile << line << std::endl;
 	}
+	infile.close();
+	outfile.close();
 	return 0;
 }

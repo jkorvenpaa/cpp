@@ -17,9 +17,11 @@ std::cout << "[INFO]\n" << "I cannot believe adding extra bacon costs more money
 void    Harl::warning(void){
 	std::cout << "[WARNING]\n" << "I think I deserve to have some extra bacon for free. I've been coming for years, whereas you started working here just last month.\n";
 }
+
 void    Harl::error(void){
 	std::cout << "[ERROR]\n" << "This is unacceptable! I want to speak to the manager now.\n";
 }
+
 void	Harl::complain(std::string level){
 	std::string levels[4]{
 		 "DEBUG",
