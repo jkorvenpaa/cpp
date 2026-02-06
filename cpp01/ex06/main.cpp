@@ -5,7 +5,7 @@ int	main(int argc, char **argv){
 	Harl harl;
 
 	if  (argc != 2){
-		std::cerr << "Usage: " << argv[0] << "pick level: \n";
+		std::cerr << "Usage: " << argv[0] << " LEVEL \n";
 		return 1;
 	}
 	std::string levels[4]{
