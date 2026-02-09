@@ -31,9 +31,12 @@ int	main(int argc, char **argv){
 		std::string line;
 		if (!std::getline(infile, line))
 			break;
-		size_t pos = line.find(s1);
-		if (pos != std::string::npos)
+		while (1){
+			size_t pos = line.find(s1);
+			if (pos == std::string::npos)
+				break;
 			line = line.substr(0, pos) + s2 + line.substr(pos + s1.length(), line.length());
+		}
 		outfile << line << std::endl;
 	}
 	infile.close();
