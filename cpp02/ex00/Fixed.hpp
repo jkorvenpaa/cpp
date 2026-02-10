@@ -5,7 +5,7 @@
 class Fixed
 {
 private:
-	int _fixpoint;
+	int _raw;
 	static const int _bits = 8;
 public:
 	Fixed(/* args */);
