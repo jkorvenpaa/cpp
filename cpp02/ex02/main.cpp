@@ -13,3 +13,7 @@ std::cout << b << std::endl;
 std::cout << Fixed::max( a, b ) << std::endl;
 return 0;
 }
+
+/*<< = “multiply by 2 for each shift”
+
+>> = “divide by 2 for each shift”*/
