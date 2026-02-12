@@ -1,7 +1,16 @@
 #include "Point.hpp"
 
+Fixed cross(Point const a, Point const b, Point const point){
+	Fixed cross =(Bx​−Ax​)(Py​−Ay​)−(By​−Ay​)(Px​−Ax​);
+	return cross;
+}
+
 bool bsp(Point const a, Point const b, Point const c, Point const point){
 
+	Fixed cross1 =(a, b, point);
+	Fixed cross1 = (b, c, point);
+	Fixed cross1 = (c, a, point);
+	
 }
 
 /* a, b, c: The vertices of our beloved triangle.
@@ -10,9 +19,10 @@ bool bsp(Point const a, Point const b, Point const c, Point const point){
 Thus, if the point is a vertex or on an edge, it will return False.
 Implement and turn in your own tests to ensure that your class behaves as expected*/
 
-/*bool inside = (
-    ((bx - cx)*(py - cy) + (by - cy)*(cx - px)) * ((bx - cx)*(ay - cy) + (by - cy)*(cx - ax)) >= 0 &&
-    ((cx - ax)*(py - cy) + (cy - ay)*(cx - px)) * ((cx - ax)*(by - cy) + (cy - by)*(cx - bx)) >= 0 &&
-    ((ax - bx)*(py - by) + (ay - by)*(bx - px)) * ((ax - bx)*(cy - by) + (ay - cy)*(bx - cx)) >= 0
-);
-*/
+/*If point P is inside triangle ABC:
+
+It must be on the same side of AB as C
+
+Same side of BC as A
+
+Same side of CA as B*/
