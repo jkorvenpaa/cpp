@@ -1,7 +1,7 @@
 #include "Point.hpp"
 
 Fixed cross(Point const a, Point const b, Point const point){
-	Fixed cross =(Bx​−Ax​)(Py​−Ay​)−(By​−Ay​)(Px​−Ax​);
+	Fixed cross =(b._x​ - a._x​)(point._y​ - a._y​) - (b._y​ - a._y​)(point._x​ - a._x​);
 	return cross;
 }
 
