@@ -1,7 +1,7 @@
 NAME = Poly
 CXX = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++20
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 .SECONDARY:$(OBJS)
