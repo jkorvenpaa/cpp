@@ -3,10 +3,10 @@
 
 #define LBLUE "\033[96m"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 private:
-	/* data */
+
 public:
 	FragTrap();
 	~FragTrap();
@@ -14,4 +14,6 @@ public:
 	FragTrap(const FragTrap &copy);
 	FragTrap &operator=(const FragTrap &copy);
 	void highFivesGuys(void);
+	unsigned int getHitp();
+	unsigned int getDamage();
 };

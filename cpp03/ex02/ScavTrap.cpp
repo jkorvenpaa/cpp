@@ -2,6 +2,10 @@
 
 ScavTrap::ScavTrap(){
 	std::cout << " ScavTrap Default constructor called\n";
+	_name = "";
+	_hitPoints = 100;
+	_energyPoints = 5;
+	_damage = 20;
 }
 
 ScavTrap::~ScavTrap(){
@@ -21,13 +25,14 @@ ScavTrap::ScavTrap(const ScavTrap &copy): ClapTrap(copy){
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &copy){
 	std::cout << "ScavTrap Copy assignment operator called\n";
-	_name = copy._name;
-	_hitPoints = copy._hitPoints; 
-	_energyPoints = copy._energyPoints;
-	_damage = copy._damage;
+	if (this != &copy){
+		_name = copy._name;
+		_hitPoints = copy._hitPoints; 
+		_energyPoints = copy._energyPoints;
+		_damage = copy._damage;
+	}
 	return *this;
 }
-
 
 void ScavTrap::guardGate(){
  std::cout << BLUE << _name << " ScavTrap is now in Gate keeper mode\n" << RESET;

@@ -1,11 +1,11 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap(){
-	std::cout << " ScavTrap Default constructor called\n";
 	_name = "";
 	_hitPoints = 100;
-	_energyPoints = 100;
-	_damage = 30;
+	_energyPoints = 5;
+	_damage = 20;
+	std::cout << "ScavTrap Default constructor called\n";
 }
 
 ScavTrap::~ScavTrap(){
@@ -24,11 +24,13 @@ ScavTrap::ScavTrap(const ScavTrap &copy): ClapTrap(copy){
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &copy){
-	std::cout << "ScavTrap Copy assignment operator called\n";
-	_name = copy._name;
-	_hitPoints = copy._hitPoints; 
-	_energyPoints = copy._energyPoints;
-	_damage = copy._damage;
+	if (this != &copy){
+		std::cout << "ScavTrap Copy assignment operator called\n";
+		_name = copy._name;
+		_hitPoints = copy._hitPoints; 
+		_energyPoints = copy._energyPoints;
+		_damage = copy._damage;
+	}
 	return *this;
 }
 

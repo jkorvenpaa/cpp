@@ -1,11 +1,11 @@
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap(){
-	std::cout << " FragTrap Default constructor called\n";
 	_name = "";
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_damage = 30;
+	std::cout << "FragTrap Default constructor called\n";
 }
 
 FragTrap::~FragTrap(){
@@ -13,6 +13,7 @@ FragTrap::~FragTrap(){
 }
 
 FragTrap::FragTrap(std::string name): ClapTrap(name){
+	_name = name;
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_damage = 30;
@@ -24,8 +25,8 @@ FragTrap::FragTrap(const FragTrap &copy): ClapTrap(copy){
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &copy){
-	std::cout << "FragTrap Copy assignment operator called\n";
 	if (this != &copy){
+		std::cout << "FragTrap Copy assignment operator called\n";
 		_name = copy._name;
 		_hitPoints = copy._hitPoints; 
 		_energyPoints = copy._energyPoints;
@@ -36,4 +37,11 @@ FragTrap &FragTrap::operator=(const FragTrap &copy){
 
 void	FragTrap::highFivesGuys(void){
 	std::cout << LBLUE << "High five FragTrap " << _name <<  "!!!!!" << std::endl << RESET;
+}
+
+unsigned int 	FragTrap::getHitp(){
+	return _hitPoints;
+}
+unsigned int	FragTrap::getDamage(){
+	return _damage;
 }
