@@ -2,24 +2,17 @@
 #include "ScavTrap.hpp"
 
 int	main(void){
-	ClapTrap clapA("Harry");
-	//ClapTrap clapB("Voldemort");
+
 
 	ScavTrap scavA("Fluffy");
 	ScavTrap scavB("Nagini");
 
-	//clapA = clapB;
-	clapA.attack("Dementor");
-/*	for (int i = 0; i < 9; i++)
-		clapB.attack("Witch");
-	clapB.takeDamage(6);
-	clapB.beRepaired(10);
-	clapA.takeDamage(20);
-	clapB.takeDamage(20);
-	clapA.takeDamage(5);
-	clapB.beRepaired(10);
-*/
-	scavA = scavB;
+	// ScavTrap scavC(scavB);
+	// scavA = scavB;
+	// scavA.guardGate();
+	// scavB.guardGate();
+	// scavC.guardGate();
+
 	scavA.attack("DeathEater");
 	for (int i = 0; i < 9; i++)
 		scavB.attack("Wizard");
@@ -30,6 +23,27 @@ int	main(void){
 	scavA.takeDamage(5);
 	scavA.guardGate();
 	scavB.beRepaired(10);
+
+	// ClapTrap clapA("Harry");
+	// ClapTrap clapB("Voldemort");
+	
+	// ClapTrap clapC(clapB);
+	// clapA = clapB;
+	// clapC.beRepaired(10);
+	// clapA.beRepaired(10);
+	// clapB.beRepaired(10);
+	
+	// clapA.attack("Dementor");
+	// for (int i = 0; i < 9; i++)
+	// 	clapB.attack("Witch");
+	// clapB.takeDamage(6);
+	// clapB.beRepaired(10);
+	// clapA.takeDamage(20);
+	// clapB.takeDamage(20);
+	// clapA.takeDamage(5);
+	// clapB.beRepaired(10);
+	
+
 	
 	return 0;
 	

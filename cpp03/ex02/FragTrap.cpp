@@ -13,6 +13,7 @@ FragTrap::~FragTrap(){
 }
 
 FragTrap::FragTrap(std::string name): ClapTrap(name){
+	_name = name;
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_damage = 30;

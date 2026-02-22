@@ -1,4 +1,4 @@
-NAME = Poly
+NAME = fragtrap
 CXX = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++20
 SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp

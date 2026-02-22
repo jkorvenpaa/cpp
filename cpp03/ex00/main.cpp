@@ -3,8 +3,13 @@
 int	main(void){
 	ClapTrap clapA("Harry");
 	ClapTrap clapB("Voldemort");
-
-	//clapA = clapB;
+	
+	// ClapTrap clapC(clapB);
+	// clapA = clapB;
+	// clapC.beRepaired(10);
+	// clapA.beRepaired(10);
+	// clapB.beRepaired(10);
+	
 	clapA.attack("Dementor");
 	for (int i = 0; i < 9; i++)
 		clapB.attack("Witch");
