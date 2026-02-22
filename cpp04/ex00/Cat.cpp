@@ -10,7 +10,7 @@ Cat::~Cat(){
 }
 
 Cat::Cat(const Cat &copy): Animal(copy){
-	std::cout << "Cat  Copy constructor called\n";
+	std::cout << "Cat Copy constructor called\n";
 }
 
 Cat &Cat::operator=(const Cat &copy){

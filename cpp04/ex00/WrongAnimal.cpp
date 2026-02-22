@@ -19,7 +19,8 @@ WrongAnimal::WrongAnimal(const WrongAnimal &copy){
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &copy){
 	std::cout << "WrongAnimal Copy assignment operator called\n";
-	_type = copy._type;
+	if (this != &copy)
+		_type = copy._type;
 	return *this;
 }
 void	WrongAnimal::makeSound() const{

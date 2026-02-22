@@ -19,7 +19,8 @@ Animal::Animal(const Animal &copy){
 
 Animal &Animal::operator=(const Animal &copy){
 	std::cout << "Animal Copy assignment operator called\n";
-	_type = copy._type;
+	if (this != &copy)
+		_type = copy._type;
 	return *this;
 }
 void	Animal::makeSound() const{

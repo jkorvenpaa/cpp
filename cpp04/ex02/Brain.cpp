@@ -2,6 +2,8 @@
 
 Brain::Brain(){
     std::cout << "Brain Default constructor called\n";
+    for (int i = 0; i < 100; i++)
+        _ideas[i] = "";	
 }
 
 Brain::~Brain(){
