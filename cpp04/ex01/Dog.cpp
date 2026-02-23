@@ -3,7 +3,7 @@
 Dog::Dog(): Animal(){
 	std::cout << "Dog Default constructor called\n";
 	_type = "Dog";
-	_brain = new Brain;
+	_brain = new Brain();
 }
 
 Dog::~Dog(){
@@ -13,7 +13,7 @@ Dog::~Dog(){
 
 Dog::Dog(const Dog &copy): Animal(copy){
 	
-	_brain = new Brain();
+	_brain = new Brain(*copy._brain);
 	std::cout << "Dog Copy constructor called\n";
 }
 
@@ -22,7 +22,7 @@ Dog &Dog::operator=(const Dog &copy){
 	if (this != &copy){
 		Animal::operator=(copy);
 		delete _brain;
-		_brain = new Brain;
+		_brain = new Brain(*copy._brain);
 	}
 	return *this;
 }

@@ -8,7 +8,7 @@ int	main(void){
 	DiamondTrap da("Riddle");
 	DiamondTrap db("Marvolo");
 	DiamondTrap dc(da);
-	//db = da;
+	db = da;
 	da.whoAmI();
 	db.whoAmI();
 	dc.whoAmI();

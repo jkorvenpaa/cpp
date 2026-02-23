@@ -8,20 +8,20 @@
 
 int main()
 {
-Animal a;
-Animal b(a);
-Animal c;
-c = a;
+// Animal a;
+// Animal b(a);
+// Animal c;
+// c = a;
 
-Animal* A = new Animal();   // default constructor
-Animal* B = new Animal(*A); // copy constructor
-Animal* C = new Animal();
-*C = *A;// copy assignment operator
-delete A;
-delete B;
-delete C;
+// Cat* A = new Cat();   // default constructor
+// Cat* B = new Cat(*A); // copy constructor
+// //*B = *A;
+// std::cout << A->brain("food") << std::endl;
+// std::cout << B->brain("hunggggryyyy") << std::endl;
+// delete A;
+// delete B;
 
-std::cout << "end of copy tests\n\n";
+//std::cout << "end of copy tests\n\n";
 
 int N = 10;
 Animal **queue = new Animal*[N];

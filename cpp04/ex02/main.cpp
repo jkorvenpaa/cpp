@@ -7,16 +7,20 @@
 
 
 int main()
-{/*
-Animal a;
-Animal b(a);
-Animal c;
-c = a;*/
+{
+// Cat* A = new Cat();   // default constructor
+// Cat* B = new Cat();//(*A); // copy constructor
+// *B = *A;
+// std::cout << A->brain("food") << std::endl;
+// std::cout << B->brain("hunggggryyyy") << std::endl;
+// delete A;
+// delete B;
 
 Animal* A = new Dog();   // default constructor
 Animal* B = new Dog(); // copy constructor
 Dog* C = new Dog();
 Dog* D = new Dog(*C);
+
 *B = *A;// copy assignment operator
 delete A;
 delete B;

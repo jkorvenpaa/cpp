@@ -7,11 +7,12 @@ class Cat : public Animal
 private:
 	Brain*	_brain;
 public:
-	Cat(/* args */);
+	Cat();
 	~Cat();
 	Cat(const Cat &copy);
 	Cat &operator=(const Cat &copy);
 	void makeSound() const override;
+	std::string	brain(std::string idea);
 	
 
 };
