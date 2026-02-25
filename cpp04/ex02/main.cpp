@@ -50,4 +50,5 @@ for (int i = 0; i < N; i++){
 delete []queue;
 
 return 0;
+
 }
