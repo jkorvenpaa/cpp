@@ -20,7 +20,7 @@ catch (std::exception &e)
 
 try
 {
-	Bureaucrat b("Peter", 150);
+	Bureaucrat b("Peter", 151);
 	b.decrementGrade();
 	std::cout << b << std::endl;
 	b.incrementGrade();
