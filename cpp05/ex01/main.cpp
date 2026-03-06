@@ -20,13 +20,19 @@ catch (std::exception &e)
 
 try
 {
-	Bureaucrat b("Peter", 151);
-	b.decrementGrade();
-	std::cout << b << std::endl;
-	b.incrementGrade();
-	std::cout << b << std::endl;
-	b.incrementGrade();
-	std::cout << b << std::endl;
+	Bureaucrat b("Peter", 10);
+	Form form("AI policy", 10, 1);
+	std::cout << form << std::endl;
+	b.signForm(form);
+	std::cout << form << std::endl;
+	b.signForm(form);
+	// b.decrementGrade();
+	// b.signForm(a);
+	// std::cout << b << std::endl;
+	// b.incrementGrade();
+	// std::cout << b << std::endl;
+	// b.incrementGrade();
+	// std::cout << b << std::endl;
 }
 catch (std::exception &e)
 {

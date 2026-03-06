@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 
+
 Bureaucrat::Bureaucrat(): _name("name"), _grade(150)
 {
 	//std::cout << "Bureaucrat default constructor called\n";
@@ -66,4 +67,19 @@ void Bureaucrat::decrementGrade(){
 	if (_grade >= 150)
 		throw GradeTooLowException(_name + ": Grade too LOW\n");
 	_grade++;
+}
+
+void	Bureaucrat::signForm(Form& form){
+	
+	if (form.getSigned()){
+		std::cout << "Form is already signed\n";
+		return ;
+	}
+	try{
+		form.beSigned(*this);
+		std::cout << _name << " signed form " << form.getName() << std::endl;
+	}
+	catch (std::exception &e){
+		std::cout << _name << "'s" << e.what()  << form.getName() << std::endl;
+	}
 }
