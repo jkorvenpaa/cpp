@@ -5,45 +5,67 @@
 
 int main(void){
 
+
+// b.decrementGrade();
+// b.incrementGrade();
 try
 {
-	Bureaucrat b("Peter", 137);
+	Bureaucrat b("Peter", 145);
+	b.decrementGrade();
+	//b.incrementGrade();
 	ShrubberyCreationForm shrub("TreePolicy");
-	std::cout << GREEN << shrub << std::endl << RESET;
-	//b.executeForm(form);
-	//b.signForm(shrub);
+	std::cout << shrub;
+	b.signForm(shrub);
 	b.executeForm(shrub);
-	// b.decrementGrade();
-	// b.signForm(a);
-	// std::cout << b << std::endl;
-	// b.incrementGrade();
-	// std::cout << b << std::endl;
-	// b.incrementGrade();
-	// std::cout << b << std::endl;
 }
 catch (std::exception &e)
 {
-	std::cout << e.what() << std::endl << std::endl;
+	std::cout << e.what() << std::endl;
+}
+
+try
+{
+	Bureaucrat b("Peter", 72);
+	b.decrementGrade();
+	//b.incrementGrade();
+	RobotomyRequestForm rob("Robo");
+	std::cout << rob;
+	b.signForm(rob);
+	b.executeForm(rob);
+}
+catch (std::exception &e)
+{
+	std::cout << e.what() << std::endl;
 }
 try
 {
-	Bureaucrat b("Peter", 5);
+	Bureaucrat b("Peter", 72);
+	b.decrementGrade();
+	//b.incrementGrade();
+	RobotomyRequestForm rob("Robo");
+	std::cout << rob;
+	b.signForm(rob);
+	b.executeForm(rob);
+}
+catch (std::exception &e)
+{
+	std::cout << e.what() << std::endl;
+}
+
+
+try
+{
+	Bureaucrat b("Peter", 25);
+	b.decrementGrade();
+	//b.incrementGrade();
 	PresidentialPardonForm pres("Pardon");
-	std::cout << GREEN << pres << std::endl << RESET;
-	//b.executeForm(form);
+	std::cout << pres;
 	b.signForm(pres);
 	b.executeForm(pres);
-	// b.decrementGrade();
-	// b.signForm(a);
-	// std::cout << b << std::endl;
-	// b.incrementGrade();
-	// std::cout << b << std::endl;
-	// b.incrementGrade();
-	// std::cout << b << std::endl;
 }
 catch (std::exception &e)
 {
-	std::cout << e.what() << std::endl << std::endl;
+	std::cout << e.what() << std::endl;
 }
 	return 0;
 }

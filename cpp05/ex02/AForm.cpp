@@ -47,13 +47,13 @@ bool AForm::getSigned() const{
 }
 
 std::ostream& operator<<(std::ostream &os, const AForm& form){
-	os << "Form "<< form.getName() << std::endl << "Grade to sign: " << form.getGradeToSign() 
+	os << std::endl << GREEN << "Form "<< form.getName() << std::endl << "Grade to sign: " << form.getGradeToSign() 
 	<< std::endl << "Grade to execute: "<< form.getGradeToExecute() << std::endl;
 	
 	if (form.getSigned())
-		std::cout << "Form is Signed\n";
+		std::cout << "Form is Signed\n" << RESET;
 	else
-		std::cout << "Form is not Signed\n";
+		std::cout << "Form is not Signed\n" << RESET;
 	return os;
 }
 

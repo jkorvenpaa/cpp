@@ -26,7 +26,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 	if (!getSigned())
 		throw FormNotSignedException("Unsigned form can not be executed");
 	if (executor.getGrade() > getGradeToExecute())
-		throw GradeTooLowException("Grade to execute is too low");
+		throw GradeTooLowException(executor.getName() + "'s grade is too low to execute");
 	std::ofstream outfile(_target +"_shrubbery");
 	if (!outfile)
 		throw std::runtime_error("failed to open file");
