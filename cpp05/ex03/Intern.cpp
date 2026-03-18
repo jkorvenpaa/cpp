@@ -7,13 +7,15 @@ Intern::Intern()
 Intern::~Intern()
 {
 }
-// Intern::Intern(Intern copy)
-// {
-// }
-// Intern::Intern()
-// {
-// }
+Intern::Intern(const Intern &other){
+	(void) other;
+}
 
+Intern	&Intern::operator=(const Intern &other){
+	(void) other;
+	return *this;
+
+}
 Intern::NoFormException::NoFormException(const std::string &message): _message(message){
 
 }

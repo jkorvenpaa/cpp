@@ -6,62 +6,61 @@
 
 int main(void){
 
-
-AForm* rrf = nullptr;
-
 try
 {
+	AForm* rrf;
 	Intern someRandomIntern;
-	rrf = someRandomIntern.makeForm("", "Bender");
+	rrf = someRandomIntern.makeForm("ShrubberyCreationForm", "Bender");
 	Bureaucrat b("Peter", 137);
-	//b.decrementGrade();
+	// b.decrementGrade();
 	//b.incrementGrade();
 	std::cout << *rrf;
 	b.signForm(*rrf);
 	b.executeForm(*rrf);
+	delete rrf;
 }
 catch (std::exception &e)
 {
 	std::cout << e.what() << std::endl;
 }
-delete rrf;
+std::cout << std::endl;
 
-AForm* rob = nullptr;
 try
 {
+	AForm* rob;
 	Intern someRandomIntern;
-	Bureaucrat b("Peter", 72);
-	b.decrementGrade();
+	Bureaucrat b("Peter", 45);
+	// b.decrementGrade();
 	//b.incrementGrade();
 	rob = someRandomIntern.makeForm("RobotomyRequestForm", "Robo");
 	std::cout << *rob;
 	b.signForm(*rob);
 	b.executeForm(*rob);
+	delete rob;
 }
 catch (std::exception &e)
 {
 	std::cout << e.what() << std::endl;
 }
-delete rob;
+std::cout << std::endl;
 
-
-AForm* pres = nullptr;
 try
 {
+	AForm* pres;
 	Intern someRandomIntern;
-	Bureaucrat b("Peter", 25);
-	b.decrementGrade();
+	Bureaucrat b("Peter", 5);
+	// b.decrementGrade();
 	//b.incrementGrade();
 	pres = someRandomIntern.makeForm("PresidentialPardonForm", "Pressa");
 	std::cout << *pres;
 	b.signForm(*pres);
 	b.executeForm(*pres);
+	delete pres;
 }
 catch (std::exception &e)
 {
 	std::cout << e.what() << std::endl;
 }
-delete pres;
 
 return 0;
 }

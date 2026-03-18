@@ -6,13 +6,13 @@
 
 class Intern
 {
-private:
-	
+
 public:
 	Intern();
 	~Intern();
+	Intern(const Intern &other);
+	Intern	&operator=(const Intern &other);
 	AForm*	makeForm(const std::string name, const std::string target);
-	void 	noForm();
 
 	class NoFormException : public std::exception{
 		private:

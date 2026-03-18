@@ -5,13 +5,10 @@
 
 int main(void){
 
-
-// b.decrementGrade();
-// b.incrementGrade();
 try
 {
-	Bureaucrat b("Peter", 145);
-	b.decrementGrade();
+	Bureaucrat b("Peter", 137);
+	//b.decrementGrade();
 	//b.incrementGrade();
 	ShrubberyCreationForm shrub("TreePolicy");
 	std::cout << shrub;
@@ -25,8 +22,8 @@ catch (std::exception &e)
 
 try
 {
-	Bureaucrat b("Peter", 72);
-	b.decrementGrade();
+	Bureaucrat b("Peter", 45);
+	//b.decrementGrade();
 	//b.incrementGrade();
 	RobotomyRequestForm rob("Robo");
 	std::cout << rob;
@@ -39,8 +36,8 @@ catch (std::exception &e)
 }
 try
 {
-	Bureaucrat b("Peter", 72);
-	b.decrementGrade();
+	Bureaucrat b("Peter", 45);
+	//b.decrementGrade();
 	//b.incrementGrade();
 	RobotomyRequestForm rob("Robo");
 	std::cout << rob;
@@ -55,8 +52,8 @@ catch (std::exception &e)
 
 try
 {
-	Bureaucrat b("Peter", 25);
-	b.decrementGrade();
+	Bureaucrat b("Peter", 5);
+	//b.decrementGrade();
 	//b.incrementGrade();
 	PresidentialPardonForm pres("Pardon");
 	std::cout << pres;

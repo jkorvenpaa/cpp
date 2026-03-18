@@ -47,7 +47,7 @@ bool AForm::getSigned() const{
 }
 
 std::ostream& operator<<(std::ostream &os, const AForm& form){
-	os << std::endl << GREEN << "Form "<< form.getName() << std::endl << "Grade to sign: " << form.getGradeToSign() 
+	os << GREEN << "Form "<< form.getName() << std::endl << "Grade to sign: " << form.getGradeToSign() 
 	<< std::endl << "Grade to execute: "<< form.getGradeToExecute() << std::endl;
 	
 	if (form.getSigned())
