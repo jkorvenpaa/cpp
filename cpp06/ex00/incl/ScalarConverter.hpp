@@ -13,17 +13,17 @@ private:
 		 FLOAT,
 		 DOUBLE,
 		 INVALID,
+
 	};
-	static Type _type;
-	
+	static Type setType(const std::string &literal);
+
 public:
 	ScalarConverter() = delete;
 	~ScalarConverter() = delete;
 	ScalarConverter(const ScalarConverter &other) = delete;
 	ScalarConverter	&operator=(const ScalarConverter &other) = delete;
 	
-	static void setType(std::string literal);
-	static void convert(std::string literal);
+	static void convert(const std::string &literal);
 };
 
 

@@ -1,81 +1,95 @@
 #include "ScalarConverter.hpp"
 
-static void	intLiteral(std::string literal){
-	std::cout << literal << std::endl;
+/*	int i = std::stoi(lit);
+	float f = std::stof(lit);
+	double d = std::stod(lit);*/
 
-}
-static void	floatLiteral(std::string literal){
-	std::cout << literal << std::endl;
-}
+static void	charLiteral(const std::string &lit){
 
-static void	doubleLiteral(std::string literal){
-	std::cout << literal << std::endl;
-}
-
-static void	charLiteral(std::string literal){
-	std::cout << literal << std::endl;
+	std::cout << "char " <<  lit << std::endl;
+	std::cout << "int " << static_cast <int>(lit[0]) <<std::endl;
+	std::cout << "float " << static_cast <float> (lit[0]) << std::endl;
+	std::cout << "double "<< static_cast <double> (lit[0])<< std::endl;
 }
 
-static void	invalid(std::string literal){
-	std::cout << literal << std::endl;
+static void	intLiteral(const double &value){
+
+	std::cout << "char invalid" << std::endl;
+	std::cout << "int " << static_cast <int>(value) << std::endl;
+	std::cout << "float " << static_cast <float>(value) << std::endl;
+	std::cout << "double "<< value << std::endl;
+
+}
+static void	floatLiteral(const double &lit){
+	std::cout << "float " << lit << std::endl;
 }
 
-void ScalarConverter::setType(std::string literal){
+static void	doubleLiteral(const double &lit){
+	std::cout << "double "<< lit << std::endl;
+}
+
+static void	invalid(const std::string &lit){
+	std::cout << "invalid "<< lit << std::endl;
+}
+
+ScalarConverter::Type ScalarConverter::setType(const std::string &literal){
 
 	int i = 0;
-	
 	if ((int)literal.length() == 1){
 		if (std::isdigit(literal[i]))
-			_type = INT;
+			return INT;
 		else if (std::isprint(literal[i]))
-			_type = CHAR;
+			return CHAR;
 		else
-			_type = INVALID;
-		return ;
+			return INVALID;
 	}
 
 	int dot = 0;
 	for (int i = 0; i < (int)literal.length(); i++){
 		if (!std::isdigit(literal[i])){
-			if (literal[i] == '.'){
+			if (i == 0 && (literal[i] == '+' || literal[i] == '-'))
+				continue;
+			if (literal[i] == '.' && i > 0){
 				dot++;
 				continue;
 			}
 			if (literal[i] == 'f' && i == (int)literal.length() - 1 && dot <= 1){
-				_type = FLOAT;
-				return ;
+				return FLOAT;
 			}
 			else{
-				_type = INVALID;
-				return ;
+				return INVALID;
 			}
 		}
 	}
 	if (dot == 1)
-		_type = DOUBLE;
+		return DOUBLE;
 	else if (dot == 0)
-		_type = INT;
+		return INT;
 	else
-		_type = INVALID;
+		return INVALID;
 }
 
 
-void ScalarConverter::convert(std::string literal){
+void ScalarConverter::convert(const std::string &literal){
 
-	setType(literal);
-	switch(_type)
+	Type type = setType(literal);
+	double value;
+	switch(type)
 	{
 		case 0:
 			charLiteral(literal);
 			break ;
 		case 1:
-			intLiteral(literal);
+			value = stod(literal);
+			intLiteral(value);
 			break ;
 		case 2:
-			floatLiteral(literal);
+			value = stod(literal);
+			floatLiteral(value);
 			break ;
 		case 3:
-			doubleLiteral(literal);
+			value = stod(literal);
+			doubleLiteral(value);
 			break ;
 		default:
 			invalid(literal);
