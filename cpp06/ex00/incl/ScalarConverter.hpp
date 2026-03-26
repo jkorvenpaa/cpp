@@ -1,8 +1,9 @@
 #pragma once
 
 #include <iostream>
-// #include <cstring>
-// #include <cctype>
+#include <regex>
+#include <climits>
+#include <limits>
 
 class ScalarConverter
 {
@@ -12,6 +13,12 @@ private:
 		 INT,
 		 FLOAT,
 		 DOUBLE,
+		 NAN,
+		 INFPOS,
+		 INFNEG,
+		 NANF,
+		 INFFPOS,
+		 INFFNEG,
 		 INVALID,
 
 	};

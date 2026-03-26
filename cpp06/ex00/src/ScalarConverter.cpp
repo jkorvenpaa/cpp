@@ -1,72 +1,80 @@
 #include "ScalarConverter.hpp"
 
-/*	int i = std::stoi(lit);
-	float f = std::stof(lit);
-	double d = std::stod(lit);*/
-
-static void	charLiteral(const std::string &lit){
-
-	std::cout << "char " <<  lit << std::endl;
-	std::cout << "int " << static_cast <int>(lit[0]) <<std::endl;
-	std::cout << "float " << static_cast <float> (lit[0]) << std::endl;
-	std::cout << "double "<< static_cast <double> (lit[0])<< std::endl;
+ static void intLimits(double value){
+	if ((value >= (static_cast <double> (INT_MIN))) && (value <= (static_cast <double> (INT_MAX))))
+		std::cout << "int " << static_cast <int>(value) << std::endl;
+	else
+		std::cout << "int imbossible" << std::endl;
 }
 
-static void	intLiteral(const double &value){
+ static void floatLimits(double value){
+	if (value < (static_cast <double> (std::numeric_limits<float>::min())))
+		std::cout << "float -inff"<< std::endl;
+	else if (value > (static_cast <double> (std::numeric_limits<float>::max())))
+		std::cout << "float +inff"<< std::endl;
+	else
+		std::cout << "float " << static_cast <float>(value) << std::endl;
+}
 
-	std::cout << "char invalid" << std::endl;
-	std::cout << "int " << static_cast <int>(value) << std::endl;
-	std::cout << "float " << static_cast <float>(value) << std::endl;
+static void	charLiteral(const std::string &literal){
+	std::cout << "char " <<  literal << std::endl;
+	std::cout << "int " << static_cast <int>(literal[0]) <<std::endl;
+	std::cout << "float " << static_cast <float> (literal[0]) << std::endl;
+	std::cout << "double "<< static_cast <double> (literal[0])<< std::endl;
+}
+
+static void	doubleLiteral(const double &value){
+	std::cout << "char imbossible" << std::endl;
+	intLimits(value);
+	floatLimits(value);
 	std::cout << "double "<< value << std::endl;
-
 }
-static void	floatLiteral(const double &lit){
-	std::cout << "float " << lit << std::endl;
-}
-
-static void	doubleLiteral(const double &lit){
-	std::cout << "double "<< lit << std::endl;
+static void specialLiterals(const std::string special){
+	std::cout << "char imbossible" << std::endl;
+	std::cout << "int imbossible" << std::endl;
+	std::cout << "float " << special << "f" << std::endl;
+	std::cout << "double " << special << std::endl;
 }
 
-static void	invalid(const std::string &lit){
-	std::cout << "invalid "<< lit << std::endl;
+static void	invalid(const std::string &literal){
+	std::cout << "invalid input "<< literal << std::endl;
 }
 
 ScalarConverter::Type ScalarConverter::setType(const std::string &literal){
 
-	int i = 0;
-	if ((int)literal.length() == 1){
-		if (std::isdigit(literal[i]))
-			return INT;
-		else if (std::isprint(literal[i]))
-			return CHAR;
-		else
-			return INVALID;
-	}
-
-	int dot = 0;
-	for (int i = 0; i < (int)literal.length(); i++){
-		if (!std::isdigit(literal[i])){
-			if (i == 0 && (literal[i] == '+' || literal[i] == '-'))
-				continue;
-			if (literal[i] == '.' && i > 0){
-				dot++;
-				continue;
-			}
-			if (literal[i] == 'f' && i == (int)literal.length() - 1 && dot <= 1){
-				return FLOAT;
-			}
-			else{
-				return INVALID;
-			}
-		}
-	}
-	if (dot == 1)
-		return DOUBLE;
-	else if (dot == 0)
+	std::regex rchar("^.$");
+	std::regex rint("^(\\+|\\-)?\\d+$");
+	std::regex rfloat("^(\\+|\\-)?(\\d+|\\d+\\.|\\d+\\.\\d+|\\.\\d+)f$");
+	std::regex rdouble("^(\\+|\\-)?(\\d+|\\d+\\.|\\d+\\.\\d+|\\.\\d+)$");
+	std::regex rnan("^nan$");
+	std::regex rinfpos("^\\+inf$");
+	std::regex rinfneg("^-inf$");
+	std::regex rnanf("^nanf$");
+	std::regex rinffpos("^\\+inff$");
+	std::regex rinffneg("^-inff$");
+	
+	if (std::regex_match(literal, rint))
 		return INT;
+	if(std::regex_match(literal, rchar))
+		return CHAR;
+	if (std::regex_match(literal, rfloat))
+		 return FLOAT;
+	if (std::regex_match(literal, rdouble))
+		 return DOUBLE;
+	if (std::regex_match(literal, rnan))
+		return NAN;
+	if (std::regex_match(literal, rinfpos))
+		return INFPOS;
+	if (std::regex_match(literal, rinfneg))
+		return  INFNEG;
+	if (std::regex_match(literal, rnanf))
+		return  NANF;
+	if (std::regex_match(literal, rinffpos))
+		return  INFFPOS;
+	if (std::regex_match(literal, rinffneg))
+		return  INFFNEG;
 	else
-		return INVALID;
+		 return INVALID;
 }
 
 
@@ -76,21 +84,36 @@ void ScalarConverter::convert(const std::string &literal){
 	double value;
 	switch(type)
 	{
-		case 0:
+		case CHAR:
 			charLiteral(literal);
 			break ;
-		case 1:
-			value = stod(literal);
-			intLiteral(value);
+		case INT:
+		case FLOAT:
+		case DOUBLE:
+			try{
+				value = std::stod(literal);
+				doubleLiteral(value);
+			}
+			catch (const std::invalid_argument& e)
+			{
+				std::cout << "std::stod invalid_argument" << std::endl;
+			}
+			catch(const std::out_of_range& e){
+				std::cout << "std::stod out_of_range\n" << std::endl;
+			}
 			break ;
-		case 2:
-			value = stod(literal);
-			floatLiteral(value);
-			break ;
-		case 3:
-			value = stod(literal);
-			doubleLiteral(value);
-			break ;
+		case NAN:
+		case NANF:
+			specialLiterals("nan");
+			break;
+		case INFPOS:
+		case INFFPOS:
+			specialLiterals("+inf");
+			break;
+		case INFNEG:
+		case INFFNEG:
+			specialLiterals("-inf");
+			break;
 		default:
 			invalid(literal);
 	}
