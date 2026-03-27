@@ -7,14 +7,19 @@
 		std::cout << "int imbossible" << std::endl;
 }
 
- static void floatLimits(double value){
-	if (value < (static_cast <double> (std::numeric_limits<float>::min())))
-		std::cout << "float -inff"<< std::endl;
+static void floatLimits(double value){
+	if (value < (static_cast <double> (std::numeric_limits<float>::lowest())))
+		std::cout << "float imbossible"<< std::endl;
 	else if (value > (static_cast <double> (std::numeric_limits<float>::max())))
-		std::cout << "float +inff"<< std::endl;
-	else
-		std::cout << "float " << static_cast <float>(value) << std::endl;
-}
+		std::cout << "float imbossible"<< std::endl;
+	else{
+		double dub = std::round(value);
+		if (dub == value)
+			std::cout << "float " << static_cast <float>(value) << ".0f" <<std::endl;
+		else
+			std::cout << "float " << static_cast <float>(value) << "f"<< std::endl;
+	}
+ }
 
 static void	charLiteral(const std::string &literal){
 	std::cout << "char " <<  literal << std::endl;
@@ -24,12 +29,16 @@ static void	charLiteral(const std::string &literal){
 }
 
 static void	doubleLiteral(const double &value){
+	double dub = std::round(value);
 	std::cout << "char imbossible" << std::endl;
 	intLimits(value);
 	floatLimits(value);
-	std::cout << "double "<< value << std::endl;
+	if (dub == value)
+		std::cout << "double "<< value << ".0"<<std::endl;
+	else
+		std::cout << "double "<< value <<std::endl;
 }
-static void specialLiterals(const std::string special){
+static void pseudoLiterals(const std::string special){
 	std::cout << "char imbossible" << std::endl;
 	std::cout << "int imbossible" << std::endl;
 	std::cout << "float " << special << "f" << std::endl;
@@ -38,6 +47,15 @@ static void specialLiterals(const std::string special){
 
 static void	invalid(const std::string &literal){
 	std::cout << "invalid input "<< literal << std::endl;
+}
+static void doubleLimits(const std::string &literal){
+	std::cout << "char imbossible" << std::endl;
+	std::cout << "int imbossible" << std::endl;
+	std::cout << "float imbossible" << std::endl;
+	if (literal[0] == '-')
+		std::cout << "double -inf" << std::endl;
+	else
+		std::cout << "double +inf" << std::endl;
 }
 
 ScalarConverter::Type ScalarConverter::setType(const std::string &literal){
@@ -62,7 +80,7 @@ ScalarConverter::Type ScalarConverter::setType(const std::string &literal){
 	if (std::regex_match(literal, rdouble))
 		 return DOUBLE;
 	if (std::regex_match(literal, rnan))
-		return NAN;
+		return NANN;
 	if (std::regex_match(literal, rinfpos))
 		return INFPOS;
 	if (std::regex_match(literal, rinfneg))
@@ -79,7 +97,6 @@ ScalarConverter::Type ScalarConverter::setType(const std::string &literal){
 
 
 void ScalarConverter::convert(const std::string &literal){
-
 	Type type = setType(literal);
 	double value;
 	switch(type)
@@ -96,28 +113,27 @@ void ScalarConverter::convert(const std::string &literal){
 			}
 			catch (const std::invalid_argument& e)
 			{
-				std::cout << "std::stod invalid_argument" << std::endl;
+				invalid(literal);
 			}
 			catch(const std::out_of_range& e){
-				std::cout << "std::stod out_of_range\n" << std::endl;
+				doubleLimits(literal);
 			}
 			break ;
-		case NAN:
+		case NANN:
 		case NANF:
-			specialLiterals("nan");
+			pseudoLiterals("nan");
 			break;
 		case INFPOS:
 		case INFFPOS:
-			specialLiterals("+inf");
+			pseudoLiterals("+inf");
 			break;
 		case INFNEG:
 		case INFFNEG:
-			specialLiterals("-inf");
+			pseudoLiterals("-inf");
 			break;
 		default:
 			invalid(literal);
 	}
-	
 }
 
 

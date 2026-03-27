@@ -4,6 +4,7 @@
 #include <regex>
 #include <climits>
 #include <limits>
+#include <cmath>
 
 class ScalarConverter
 {
@@ -13,7 +14,7 @@ private:
 		 INT,
 		 FLOAT,
 		 DOUBLE,
-		 NAN,
+		 NANN,
 		 INFPOS,
 		 INFNEG,
 		 NANF,
