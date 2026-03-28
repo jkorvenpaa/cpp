@@ -1,4 +1,6 @@
 #pragma once
+#include <random>
+#include <iostream>
 
 class Base
 {
