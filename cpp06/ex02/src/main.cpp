@@ -3,16 +3,15 @@
 #include "B.hpp"
 #include "C.hpp"
 
-
 Base * generate(void){
 
-	std::uniform_int_distribution<> dist(1, 3);
+	std::uniform_int_distribution<> dist(0, 2);
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	int x = dist(gen);
-	if (x == 1)
+	if (x == 0)
 		return new A;
-	else if (x == 2)
+	else if (x == 1)
 		return new B;
 	else
 		return new C;
@@ -56,5 +55,13 @@ int main(void){
 	identify(p);
 	identify(*p);
 	delete p;
+
+	std::cout << std::endl;
+	
+	Base *q = generate();
+	identify(q);
+	identify(*q);
+	delete q;
+
 	return (0);
 }

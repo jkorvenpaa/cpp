@@ -73,8 +73,12 @@ ScalarConverter::Type ScalarConverter::setType(const std::string &literal){
 	
 	if (std::regex_match(literal, rint))
 		return INT;
-	if(std::regex_match(literal, rchar))
-		return CHAR;
+	if(std::regex_match(literal, rchar)){
+		if (std::isprint(literal[0]))
+			return CHAR;
+		else 
+			return INVALID;
+	}
 	if (std::regex_match(literal, rfloat))
 		 return FLOAT;
 	if (std::regex_match(literal, rdouble))
