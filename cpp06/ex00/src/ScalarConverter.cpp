@@ -4,14 +4,14 @@
 	if ((value >= (static_cast <double> (INT_MIN))) && (value <= (static_cast <double> (INT_MAX))))
 		std::cout << "int " << static_cast <int>(value) << std::endl;
 	else
-		std::cout << "int imbossible" << std::endl;
+		std::cout << "int impossible" << std::endl;
 }
 
 static void floatLimits(double value){
 	if (value < (static_cast <double> (std::numeric_limits<float>::lowest())))
-		std::cout << "float imbossible"<< std::endl;
+		std::cout << "float impossible"<< std::endl;
 	else if (value > (static_cast <double> (std::numeric_limits<float>::max())))
-		std::cout << "float imbossible"<< std::endl;
+		std::cout << "float impossible"<< std::endl;
 	else{
 		double dub = std::round(value);
 		if (dub == value)
@@ -28,12 +28,19 @@ static void	charLiteral(const std::string &literal){
 	std::cout << "double "<< static_cast <double> (literal[0])<< std::endl;
 }
 
-static void	doubleLiteral(const double &value){
+static void charLimits(const double &value){
 	double dub = std::round(value);
 	if ((value >= 32 && value <=126) && (dub == value))
 		std::cout << "char " << static_cast<char>(value) << std::endl;
+	else if ((value >= 0 && value <=255) && (dub == value))
+		std::cout << "char non displayable" << std::endl;
 	else
-		std::cout << "char imbossible" << std::endl;
+		std::cout << "char impossible" << std::endl;
+}
+
+static void	doubleLiteral(const double &value){
+	double dub = std::round(value);
+	charLimits(value);
 	intLimits(value);
 	floatLimits(value);
 	if (dub == value)
@@ -42,8 +49,8 @@ static void	doubleLiteral(const double &value){
 		std::cout << "double "<< value <<std::endl;
 }
 static void pseudoLiterals(const std::string special){
-	std::cout << "char imbossible" << std::endl;
-	std::cout << "int imbossible" << std::endl;
+	std::cout << "char impossible" << std::endl;
+	std::cout << "int impossible" << std::endl;
 	std::cout << "float " << special << "f" << std::endl;
 	std::cout << "double " << special << std::endl;
 }
@@ -52,9 +59,9 @@ static void	invalid(const std::string &literal){
 	std::cout << "invalid input "<< literal << std::endl;
 }
 static void doubleLimits(const std::string &literal){
-	std::cout << "char imbossible" << std::endl;
-	std::cout << "int imbossible" << std::endl;
-	std::cout << "float imbossible" << std::endl;
+	std::cout << "char impossible" << std::endl;
+	std::cout << "int impossible" << std::endl;
+	std::cout << "float impossible" << std::endl;
 	if (literal[0] == '-')
 		std::cout << "double -inf" << std::endl;
 	else
