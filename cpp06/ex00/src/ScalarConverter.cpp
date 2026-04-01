@@ -30,7 +30,10 @@ static void	charLiteral(const std::string &literal){
 
 static void	doubleLiteral(const double &value){
 	double dub = std::round(value);
-	std::cout << "char imbossible" << std::endl;
+	if ((value >= 32 && value <=126) && (dub == value))
+		std::cout << "char " << static_cast<char>(value) << std::endl;
+	else
+		std::cout << "char imbossible" << std::endl;
 	intLimits(value);
 	floatLimits(value);
 	if (dub == value)
