@@ -18,11 +18,13 @@ Base * generate(void){
 }
 
 void identify(Base* p){
+	if (p == NULL)
+		return ;
 	if (dynamic_cast<A*>(p))
 		std::cout << "type A" << std::endl;
-	if (dynamic_cast<B*>(p))
+	else if (dynamic_cast<B*>(p))
 		std::cout << "type B" << std::endl;
-	if (dynamic_cast<C*>(p))
+	else if (dynamic_cast<C*>(p))
 		std::cout << "type C" << std::endl;
 }
 
