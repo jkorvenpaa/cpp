@@ -26,7 +26,7 @@ template <typename T> Array<T>::Array():_array(NULL), _len(0)
 template <typename T> Array<T>::Array(unsigned int len):_array(NULL), _len(len)
 {
 	try{
-	 _array = new T[_len]; 
+	 _array = new T[_len](); 
 	}
 	catch (const std::exception& e){
 		 std::cerr << e.what() << '\n';
@@ -62,7 +62,7 @@ template <typename T> const T& Array<T>::operator[](unsigned int index) const{
 	{
 		return _array[index];
 	}
-	throw std::out_of_range("out of range\n");
+	throw std::out_of_range("out of range const");
 
 }
 
@@ -71,7 +71,7 @@ template <typename T> T& Array<T>::operator[](unsigned int index){
 	{
 		return _array[index];
 	}
-	throw std::out_of_range("out of range\n");
+	throw std::out_of_range("out of range");
 
 }
 template <typename T> unsigned int Array<T>:: size() const{
