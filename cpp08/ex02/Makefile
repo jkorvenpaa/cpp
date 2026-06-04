@@ -1,8 +1,8 @@
-NAME = span
+NAME = mutated
 CXX = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++20
 
-SRCS = main.cpp Span.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 SRC_DIR = src
