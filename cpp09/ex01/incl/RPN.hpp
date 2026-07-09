@@ -1,10 +1,12 @@
 #pragma once
 #include <iostream>
 #include <stack>
+#include <sstream>
+
 
 class RPN{
 	private:
-		std::stack<int> _number;
+		std::stack<int> _numbers;
 	public:
 		RPN();
 		~RPN();
