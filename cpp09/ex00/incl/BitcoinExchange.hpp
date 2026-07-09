@@ -3,6 +3,8 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <regex>
+#include <cmath>
 
 class BitcoinExhange{
 	private:

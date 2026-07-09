@@ -10,11 +10,27 @@ BitcoinExhange& BitcoinExhange::operator=(const BitcoinExhange &other){
 		_data = other._data;
 	}
 	return *this;
-
 }
 
 void	BitcoinExhange::validDate(std::string date){
-	if (date.empty())
+	std::regex reg("\\d{4}\\-\\d{2}\\-\\d{2}");
+	if (!std::regex_match(date, reg)){
+		throw std::runtime_error ("Error: bad input => " + date);
+	}
+	int year = stoi(date.substr(0,4));
+	int month = stoi(date.substr(5,2));
+	int day = stoi(date.substr(8,2));
+	if (month < 1 || month > 12 || day < 1 || day > 31)
+		throw std::runtime_error ("Error: bad input => " + date);
+	if (month == 2){
+		if (day == 29){
+			if ((year % 4 != 0) || ((year % 100 == 0) && (year % 400 != 0))) //leap years can be divided by 4, centuries by 400
+				throw std::runtime_error ("Error: bad input => " + date);
+		}
+		if (day > 29)
+			throw std::runtime_error ("Error: bad input => " + date);
+	}
+	if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11))
 		throw std::runtime_error ("Error: bad input => " + date);
 }
 
@@ -56,13 +72,6 @@ void BitcoinExhange::loadExchangeRates(){
 		_data.insert({date, rate});
 	}
 	data.close();
-
-	// //for testing only block:
-	// 		auto it = _data.begin();
-	// 		//std::advance(it, 200);
-	// 		for (int i = 0; i < 6 && it != _data.end(); ++i, ++it)
-	// 			std::cout << it->first << " " << it->second << '\n';
-
 }
 
 void BitcoinExhange::processInputFile(const std::string &arg){
@@ -81,6 +90,8 @@ void BitcoinExhange::processInputFile(const std::string &arg){
 		}
 		try{
 		std::string date = line.substr(0, pos - 1);
+		if (pos + 1 == line.length())
+			throw std::runtime_error ("Error: bad input => " + line);
 		double val = std::stod(line.substr(pos + 2));
 		validDate(date);
 		validRate(val);
