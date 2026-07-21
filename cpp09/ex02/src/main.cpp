@@ -6,7 +6,8 @@ int	main (int argc, char **argv){
 		return 1;
 	}
 	try{
-		parseInput(argc, argv);
+		PmergeMe pmerge;
+		pmerge.parseInput(argc, argv);
 	}
 	catch (std::exception &e){
 		std::cerr << e.what() << std::endl;

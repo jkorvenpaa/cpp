@@ -9,10 +9,14 @@ class PmergeMe{
 	private:
 	std::vector<int>	_vec;
 	std::deque<int>		_deq;
+
 	public:
 	PmergeMe(){};
 	~PmergeMe(){};
-	PmergeMe(const PmergeMe &other);
+	PmergeMe(const PmergeMe &other): _vec(other._vec), _deq(other._deq){};
 	PmergeMe&	operator=(const PmergeMe &other);
-	void parseInput(int ac, std::string av);
+	void parseInput(int ac, char **av);
+	void printVector();
+	void printDeque();
+
 };
