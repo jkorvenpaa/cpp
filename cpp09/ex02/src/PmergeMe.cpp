@@ -38,17 +38,24 @@ void PmergeMe::parseInput(int ac, char** av){
 		std::string str = av[i];
 		int num = std::stoi(str, &pos);
 		if (pos != str.size())
-			throw std::runtime_error("invalid argument\n");
+			throw std::runtime_error("invalid argument");
+        if (num < 0)
+            throw std::runtime_error("invalid argument");
 		_vec.push_back(num);
 		_deq.push_back(num);
 	}
 	_elements = _vec.size();
 	printVector();
 	printDeque();
-	sortPairsVector();
+	
 }
-
-std::vector<size_t>	PmergeMe::createJacobstahl(const size_t amount){
+void    PmergeMe::startVector(){
+    const std::clock_t start = std::clock();
+    _vec = sortVector(_vec);
+    std::clock_t end = std::clock();
+    const processTime(start, end);
+}
+std::vector<size_t>	PmergeMe::createJacobsthal(const size_t amount){
 
 	std::vector<size_t> jacob;
 	int a = 0;
@@ -101,29 +108,37 @@ std::vector<size_t>	PmergeMe::createJacobstahl(const size_t amount){
 	std::cout << std::endl;
 	return order;
 }
+bool    PmergeMe::hasRemainder(const std::vector<int> &vec){
+    return !vec.size() % 2 == 0;
+}
 
-void PmergeMe::sortPairsVector(){
-	//std::clock_t startV = std::clock();
-	//add only one element rule!!
-	std::vector<std::pair <int, int> >pairs;
-	int remainder = -1;
-	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); it+=2){
-		if (it + 1  == _vec.end())
-			remainder = *it;
-		else if (*it > *(it + 1)){
-			pairs.emplace_back(*it, *(it+1));
-		}
-		else{
-			pairs.emplace_back(*(it+1), *it);
-		}
-	}
-	std::sort(pairs.begin(), pairs.end());
-	std::vector<int> main;
-	std::vector<int> pending;
-	for (const std::pair<int, int> &p :pairs){
-    	main.push_back(p.first);
-		pending.push_back(p.second);
-	}
+void PmergeMe::sortVector(const std::vector<int> &vec){
+	
+	if (vec.size() <= 1)
+        return vec;
+	std::vector<std::pair <int, int>>pairs;
+    std::vector<int> winners;
+    int remainder = hasRemainder(vec) ? vec.back() : 0;
+    for (size_t i = 0; i + 1 < vec.size(); i += 2){
+        if (vec[i] > vec[i + 1])
+            pairs.emplace_back(vec[i], vec[i + 1]);
+        else
+            pairs.emplace_back(vec[i + 1], vec[i]);
+
+        winners.push_back(pairs.back().first);
+    }
+    winners = sortVector(winners);
+
+	std::vector <std::pair<int, int>>sorted;
+    for (size_t i = 0 , i < winners.size(); i++){
+
+    }
+	// std::vector<int> main;
+	// std::vector<int> pending;
+	// for (const std::pair<int, int> &p :pairs){
+    // 	main.push_back(p.first);
+	// 	pending.push_back(p.second);
+	// }
 	std::vector<size_t> order = createJacobstahl(pending.size());
 }
 

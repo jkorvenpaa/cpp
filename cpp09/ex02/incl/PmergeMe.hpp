@@ -22,6 +22,7 @@ class PmergeMe{
 	void	printDeque();
 	void	processTime(const std::clock_t start, const std::clock_t end);
 	std::vector<size_t>	createJacobstahl(const size_t amount);
-	void	sortPairsVector();
+	void	processVector();
+	std::vector<int>	sortVector(const std::vector<int> &vec);
 
 };

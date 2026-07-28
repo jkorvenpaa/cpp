@@ -8,6 +8,7 @@ int	main (int argc, char **argv){
 	try{
 		PmergeMe pmerge;
 		pmerge.parseInput(argc, argv);
+		startVector();
 	}
 	catch (std::exception &e){
 		std::cerr << e.what() << std::endl;
