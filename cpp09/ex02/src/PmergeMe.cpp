@@ -51,7 +51,7 @@ void PmergeMe::parseInput(int ac, char** av){
 }
 void    PmergeMe::processVector(){
     const std::clock_t start = std::clock();
-    _vec = sortVector(_vec);
+    sortVector(_vec);
 	printVector();
     const std::clock_t end = std::clock();
     processTime(start, end);
@@ -72,26 +72,23 @@ std::vector<size_t>	PmergeMe::createJacobsthal(const size_t amount){
 // 0, 2, 1, 4, 3, 9, 8, 7, 6, 5
 // = insertion index order
 	std::vector<size_t> jacob;
+	std::vector<size_t> order;
+	if (amount == 0)
+		return order;
 	int a = 0;
 	int b = 1;
-	//jacob.push_back(a);
+	order.push_back(a);
 	for (size_t i = 2; i <= amount; i++){
 		size_t num = b + 2 * a;
 		jacob.push_back(num);
 		a = b;
 		b = num;
 	}
-	std::cout << "jacob ";
-	for (std::vector<size_t>::iterator it = jacob.begin(); it != jacob.end(); it++){
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-
-	std::vector<size_t> order;
-	size_t i = 0;
+	
+	size_t i = 1;
 	for(std::vector<size_t>::iterator it = jacob.begin(); it != jacob.end(); it++){
 		std::vector<size_t> group;
-		while (i < *it && i < amount){
+		while (i <= *it && i < amount){
 			group.push_back(i);
 			i++;
 		}
@@ -107,11 +104,48 @@ std::vector<size_t>	PmergeMe::createJacobsthal(const size_t amount){
 	return order;
 }
 
+std::vector<int>&  PmergeMe::binaryInsert(size_t index, std::vector<int> &main, std::vector <std::pair<int, int>> sorted){
 
-std::vector<int> PmergeMe::sortVector(const std::vector<int> &vec){
+	int bound = sorted[index].first;
+	int pending = sorted[index].second;
+
+
+	for (size_t i = 0; i < main.size(); i++)
+	{
+		if (main[i] == bound)
+		{
+			index = i;
+			break;
+		}
+	}
+	size_t i = 0;
+	while (i < index && pending > main[i])
+		i++;
+
+	main.insert(main.begin() + i, pending);
+
+	return main;
+
+
+	// for (size_t i = 0; i < main.size(); i++){
+	// 	if (bound == main[i]){
+	// 		main.insert(main.begin() + i, pending);
+	// 		break;
+	// 	}
+	// 	std::cout << "bound: " << bound << " main[i]: " << main[i] << " pending: " << pending <<std::endl; 
+	// 	if (pending <= main[i]){
+	// 		main.insert(main.begin() + i, pending);
+	// 		break;
+	// 	}
+	// }
+	// return main;
+}
+
+
+void PmergeMe::sortVector(std::vector<int> &vec){
 	
 	if (vec.size() <= 1)
-        return vec;
+        return ;
 	std::vector<std::pair <int, int>>pairs;
     std::vector<int> winners;
 	bool hasRemainder = vec.size() % 2 != 0;
@@ -128,15 +162,15 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int> &vec){
 	{
 		winners.push_back(pairs[i].first);
 	}
+	
     sortVector(winners);
 
 	std::vector <std::pair<int, int>>sorted;
-	std::vector<bool> used(pairs.size(), false);
     for (size_t i = 0 ; i < winners.size(); i++){
 		for (size_t j = 0; j < pairs.size(); j++)
-			if (!used[j] && winners[i] == pairs[j].first){
+			if (winners[i] == pairs[j].first){
 				sorted.push_back(pairs[j]);
-				used[j] = true;
+				pairs.erase(pairs.begin()+ j);
 				break;
 			}				
 	}
@@ -149,10 +183,20 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int> &vec){
 	}
 
 	std::vector<size_t> order = createJacobsthal(pending.size());
-	for (size_t i = 0; i < order.size(); i++){
-		main.push_back(pending[order[i]]);
-		//binaryInsert(order[i]);
+	std::cout << "order: ";
+	for (std::vector<size_t>::iterator it = order.begin(); it != order.end(); it++){
+		std::cout << *it << " ";
 	}
-	return main;
+	std::cout << std::endl;
+	for (size_t i = 0; i < order.size(); i++){
+		main = binaryInsert(order[i], main, sorted);
+	}
+	if (hasRemainder){
+		size_t i = 0;
+		while (i < main.size() && main[i] < remainder)
+			i++;
+		main.insert(main.begin() + i, remainder);
+	}
+	vec = main;
 }
 

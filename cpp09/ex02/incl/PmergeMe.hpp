@@ -24,7 +24,8 @@ class PmergeMe{
 	
 	std::vector<size_t>	createJacobsthal(const size_t amount);
 	void	processVector();
-	std::vector<int>	sortVector(const std::vector<int> &vec);
+	void	sortVector(std::vector<int> &vec);
+	std::vector<int>&	binaryInsert(size_t order, std::vector<int> &main, std::vector <std::pair<int, int>> sorted);
 
 
 };
