@@ -56,47 +56,44 @@ void    PmergeMe::processVector(){
     const std::clock_t end = std::clock();
     processTime(start, end);
 }
-std::vector<size_t>	PmergeMe::createJacobsthal(const size_t amount){
+std::vector<size_t>	PmergeMe::createJacobsthal(const size_t pendingCount){
 
-// Your indexes are:
-// 0 1 2 3 4 5 6 7 8 9
-// Take Jacobsthal endpoints:
-// 1, 3, 5, 11
-// Stop when the endpoint is bigger than the amount of elements.
-// Groups by end points:
-// [0]
-// [1,2]
-// [3,4]
-// [5,6,7,8,9]
+// Take Jacobsthal sequence(next = current + 2 * previous): while endpoint < amount of indexes you need:
+// Stop when the endpoint is bigger
+// Group by end points
 // reverse groups and concatenate
-// 0, 2, 1, 4, 3, 9, 8, 7, 6, 5
 // = insertion index order
 	std::vector<size_t> jacob;
 	std::vector<size_t> order;
-	if (amount == 0)
+
+	if (pendingCount == 0)
 		return order;
-	int a = 0;
-	int b = 1;
-	order.push_back(a);
-	for (size_t i = 2; i <= amount; i++){
+	order.push_back(0);
+
+	size_t a = 0;
+	size_t b = 1;
+	size_t prevGroup = 1;
+
+	for (size_t i = 2; i <= pendingCount; i++){
 		size_t num = b + 2 * a;
+		if (num > pendingCount)
+        	break;
 		jacob.push_back(num);
 		a = b;
 		b = num;
 	}
 	
-	size_t i = 1;
-	for(std::vector<size_t>::iterator it = jacob.begin(); it != jacob.end(); it++){
-		std::vector<size_t> group;
-		while (i <= *it && i < amount){
-			group.push_back(i);
-			i++;
+	for(size_t i = 0; i < jacob.size(); i++){
+		for (size_t group = jacob[i]; group > prevGroup; group--){
+			order.push_back(group -1);
 		}
-		std::reverse(group.begin(), group.end());
-		order.insert(order.end(), group.begin(), group.end());
+		prevGroup = jacob[i];
 	}
-	while (i < amount)
-        order.push_back(i++);
+
+	for (size_t group = pendingCount; group > prevGroup; group--){
+    	order.push_back(group- 1);
+	}
+
 	for (std::vector<size_t>::iterator it = order.begin(); it != order.end(); it++){
 		std::cout << *it << " ";
 	}
@@ -200,3 +197,40 @@ void PmergeMe::sortVector(std::vector<int> &vec){
 	vec = main;
 }
 
+// processVector()
+
+//     start = clock
+
+//     sortVector(original)
+
+//         pair elements
+//         collect winners
+
+//         sortVector(winners)
+
+//             pair winners
+//             collect winners
+
+//             sortVector(smaller winners)
+
+//                 base case
+//                 return
+
+//             rebuild pairs
+//             createJacobsthal
+//             binaryInsert
+//             insert remainder
+//             return
+
+//         rebuild pairs
+//         createJacobsthal
+//         binaryInsert
+//         binaryInsert
+//         binaryInsert
+//         insert remainder
+
+//     printVector()
+
+//     end = clock
+
+//     processTime()
