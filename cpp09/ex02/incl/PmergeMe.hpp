@@ -20,12 +20,16 @@ class PmergeMe{
 	void	parseInput(int ac, char **av);
 	void	printVector();
 	void	printDeque();
-	void	processTime(const std::clock_t start, const std::clock_t end);
+	void	processTime(const std::clock_t start, const std::clock_t end, const std::string type);
 	
-	std::vector<size_t>	createJacobsthal(const size_t amount);
 	void	processVector();
+	void    processDeque();
 	void	sortVector(std::vector<int> &vec);
-	std::vector<int>&	binaryInsert(size_t order, std::vector<int> &main, std::vector <std::pair<int, int>> sorted);
+	void	sortDeque(std::deque<int> &vec);
+	std::vector<size_t>	createJacobsthal(const size_t pendingCount);
+	std::deque<size_t>	createJacobsthalDeque(const size_t pendingCount);
+	std::vector<int>&	binaryInsert(std::vector<int> &main, int bound, int pending);
+	std::deque<int>&	binaryInsertDeque(std::deque<int> &main, int bound, int pending);
 
 
 };

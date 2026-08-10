@@ -9,6 +9,7 @@ int	main (int argc, char **argv){
 		PmergeMe pmerge;
 		pmerge.parseInput(argc, argv);
 		pmerge.processVector();
+		pmerge.processDeque();
 	}
 	catch (std::exception &e){
 		std::cerr << e.what() << std::endl;
