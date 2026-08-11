@@ -10,7 +10,6 @@ int	main (int argc, char **argv){
 		pmerge.parseInput(argc, argv);
 		pmerge.processVector();
 		pmerge.processDeque();
-		
 	}
 	catch (std::exception &e){
 		std::cerr << "Error" << std::endl;

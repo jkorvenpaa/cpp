@@ -63,6 +63,7 @@ void    PmergeMe::processDeque(){
 	//printDeque("After: ");
     processTime(start, end, "deque");
 }
+
 std::deque<size_t>	PmergeMe::createJacobsthalDeque(const size_t pendingCount){
 // returns insertion order (indexes)
 	std::deque<size_t> jacob;
@@ -97,6 +98,7 @@ std::deque<size_t>	PmergeMe::createJacobsthalDeque(const size_t pendingCount){
     	order.push_back(remaining - 1);
 	return order;
 }
+
 std::vector<size_t>	PmergeMe::createJacobsthal(const size_t pendingCount){
 // returns insertion order (indexes)
 	std::vector<size_t> jacob;
@@ -131,6 +133,7 @@ std::vector<size_t>	PmergeMe::createJacobsthal(const size_t pendingCount){
     	order.push_back(remaining - 1);
 	return order;
 }
+
 void  PmergeMe::binaryInsertDeque(std::deque<int> &main, int bound, int pending){
 	size_t right = main.size();
 	size_t left = 0;
@@ -182,6 +185,7 @@ void  PmergeMe::binaryInsert(std::vector<int> &main, int bound, int pending){
 	}
 	main.insert(main.begin() + left, pending);
 }
+
 void PmergeMe::sortDeque(std::deque<int> &vec){
 	if (vec.size() <= 1)
         return ; //recursion stops
@@ -295,4 +299,3 @@ void PmergeMe::sortVector(std::vector<int> &vec){
 	}
 	vec = main;
 }
-
