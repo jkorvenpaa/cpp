@@ -19,13 +19,13 @@ RPN&	RPN::operator=(const RPN &other){
 void	RPN::calculateRPN(std::string arg){
 	std::stringstream stream(arg);
 	std::string unit;
-	int firstPop;
-	int secondPop;
+	long firstPop;
+	long secondPop;
 	while (stream >> unit){
 		if (unit.length()!= 1)
 			throw(std::runtime_error ("Error"));
 		if (isdigit(unit[0])){
-			int num = std::stoi(unit);
+			long num = std::stol(unit);
 			_numbers.push(num);
 		}
 		else if(unit[0] == '+' || unit[0] == '-' || unit[0] == '*'|| unit[0] == '/'){
@@ -35,7 +35,7 @@ void	RPN::calculateRPN(std::string arg){
 			_numbers.pop();
 			secondPop = _numbers.top();
 			_numbers.pop();
-			int res;
+			long res;
 			switch(unit[0]){
 				case '+':
 					res = firstPop + secondPop;

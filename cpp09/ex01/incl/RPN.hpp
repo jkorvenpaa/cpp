@@ -6,7 +6,7 @@
 
 class RPN{
 	private:
-		std::stack<int> _numbers;
+		std::stack<long> _numbers;
 	public:
 		RPN();
 		~RPN();
